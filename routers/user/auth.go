@@ -19,7 +19,7 @@ import (
 )
 
 const (
-//	SIGNIN          base.TplName = "user/auth/signin"
+	SIGNIN          base.TplName = "user/auth/signin"
 	SIGNUP          base.TplName = "user/auth/signup"
 	ACTIVATE        base.TplName = "user/auth/activate"
 	FORGOT_PASSWORD base.TplName = "user/auth/forgot_passwd"
@@ -314,6 +314,10 @@ func ActivateEmail(ctx *context.Context) {
 }
 
 func ForgotPasswd(ctx *context.Context) {
+	//禁止忘记密码页面
+	ctx.Error(404)
+	return
+
 	ctx.Data["Title"] = ctx.Tr("auth.forgot_password")
 
 	if setting.MailService == nil {
@@ -327,6 +331,10 @@ func ForgotPasswd(ctx *context.Context) {
 }
 
 func ForgotPasswdPost(ctx *context.Context) {
+	//禁止忘记密码页面
+	ctx.Error(404)
+	return
+
 	ctx.Data["Title"] = ctx.Tr("auth.forgot_password")
 
 	if setting.MailService == nil {
@@ -372,6 +380,10 @@ func ForgotPasswdPost(ctx *context.Context) {
 }
 
 func ResetPasswd(ctx *context.Context) {
+	//禁止忘记密码页面
+	ctx.Error(404)
+	return
+
 	ctx.Data["Title"] = ctx.Tr("auth.reset_password")
 
 	code := ctx.Query("code")
@@ -385,6 +397,9 @@ func ResetPasswd(ctx *context.Context) {
 }
 
 func ResetPasswdPost(ctx *context.Context) {
+	//禁止在GOGS重置密码
+	ctx.Error(404)
+	return
 	ctx.Data["Title"] = ctx.Tr("auth.reset_password")
 
 	code := ctx.Query("code")
