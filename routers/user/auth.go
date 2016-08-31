@@ -19,7 +19,7 @@ import (
 )
 
 const (
-	SIGNIN          base.TplName = "user/auth/signin"
+//	SIGNIN          base.TplName = "user/auth/signin"
 	SIGNUP          base.TplName = "user/auth/signup"
 	ACTIVATE        base.TplName = "user/auth/activate"
 	FORGOT_PASSWORD base.TplName = "user/auth/forgot_passwd"
