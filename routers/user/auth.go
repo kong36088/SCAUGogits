@@ -400,6 +400,7 @@ func ResetPasswdPost(ctx *context.Context) {
 	//禁止在GOGS重置密码
 	ctx.Error(404)
 	return
+
 	ctx.Data["Title"] = ctx.Tr("auth.reset_password")
 
 	code := ctx.Query("code")
