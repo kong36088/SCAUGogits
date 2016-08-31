@@ -47,6 +47,7 @@ type InstallForm struct {
 	AdminPasswd        string `binding:"OmitEmpty;MaxSize(255)" locale:"install.admin_password"`
 	AdminConfirmPasswd string
 	AdminEmail         string `binding:"OmitEmpty;MinSize(3);MaxSize(254);Include(@)" locale:"install.admin_email"`
+
 }
 
 func (f *InstallForm) Validate(ctx *macaron.Context, errs binding.Errors) binding.Errors {

@@ -37,6 +37,13 @@ func EncodeMD5(str string) string {
 	return hex.EncodeToString(m.Sum(nil))
 }
 
+//MD5方法
+func MD5(text string) string{
+	ctx := md5.New()
+	ctx.Write([]byte(text))
+	return hex.EncodeToString(ctx.Sum(nil))
+}
+
 // Encode string to sha1 hex value.
 func EncodeSha1(str string) string {
 	h := sha1.New()

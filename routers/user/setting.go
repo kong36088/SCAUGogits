@@ -169,12 +169,20 @@ func SettingsDeleteAvatar(ctx *context.Context) {
 }
 
 func SettingsPassword(ctx *context.Context) {
+	//禁止修改密码页面
+	ctx.Error(404)
+	return
+
 	ctx.Data["Title"] = ctx.Tr("settings")
 	ctx.Data["PageIsSettingsPassword"] = true
 	ctx.HTML(200, SETTINGS_PASSWORD)
 }
 
 func SettingsPasswordPost(ctx *context.Context, form auth.ChangePasswordForm) {
+	//禁止修改密码页面
+	ctx.Error(404)
+	return
+
 	ctx.Data["Title"] = ctx.Tr("settings")
 	ctx.Data["PageIsSettingsPassword"] = true
 
@@ -203,6 +211,10 @@ func SettingsPasswordPost(ctx *context.Context, form auth.ChangePasswordForm) {
 }
 
 func SettingsEmails(ctx *context.Context) {
+	//禁止添加邮箱页面
+	ctx.Error(404)
+	return
+
 	ctx.Data["Title"] = ctx.Tr("settings")
 	ctx.Data["PageIsSettingsEmails"] = true
 
@@ -217,6 +229,10 @@ func SettingsEmails(ctx *context.Context) {
 }
 
 func SettingsEmailPost(ctx *context.Context, form auth.AddEmailForm) {
+	//禁止添加邮箱页面
+	ctx.Error(404)
+	return
+
 	ctx.Data["Title"] = ctx.Tr("settings")
 	ctx.Data["PageIsSettingsEmails"] = true
 
@@ -417,6 +433,10 @@ func SettingsDeleteApplication(ctx *context.Context) {
 }
 
 func SettingsDelete(ctx *context.Context) {
+	//禁止删除帐号页面
+	ctx.Error(404)
+	return
+
 	ctx.Data["Title"] = ctx.Tr("settings")
 	ctx.Data["PageIsSettingsDelete"] = true
 

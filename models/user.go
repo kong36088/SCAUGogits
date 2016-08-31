@@ -7,7 +7,7 @@ package models
 import (
 	"bytes"
 	"container/list"
-	"crypto/sha256"
+	//"crypto/sha256"
 	"encoding/hex"
 	"errors"
 	"fmt"
@@ -316,14 +316,17 @@ func (u *User) NewGitSig() *git.Signature {
 
 // EncodePasswd encodes password to safe format.
 func (u *User) EncodePasswd() {
-	newPasswd := base.PBKDF2([]byte(u.Passwd), []byte(u.Salt), 10000, 50, sha256.New)
-	u.Passwd = fmt.Sprintf("%x", newPasswd)
+	//newPasswd := base.PBKDF2([]byte(u.Passwd), []byte(u.Salt), 10000, 50, sha256.New)
+	newPasswd := base.MD5(u.Passwd+u.Salt)
+	u.Passwd = fmt.Sprintf("%v", newPasswd)
 }
 
 // ValidatePassword checks if given password matches the one belongs to the user.
 func (u *User) ValidatePassword(passwd string) bool {
 	newUser := &User{Passwd: passwd, Salt: u.Salt}
 	newUser.EncodePasswd()
+	//fmt.Printf("%v",newUser.Passwd)
+	//fmt.Printf("%v",u.Passwd)
 	return u.Passwd == newUser.Passwd
 }
 
