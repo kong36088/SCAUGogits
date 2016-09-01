@@ -58,6 +58,7 @@ var (
 	AppSubUrlDepth int // Number of slashes
 	AppPath        string
 	AppDataPath    string
+	WeCenterUrl    string
 
 	// Server settings
 	Protocol             Scheme
@@ -327,6 +328,9 @@ func IsRunUserMatchCurrentUser(runUser string) (string, bool) {
 // NewContext initializes configuration context.
 // NOTE: do not print any log except error.
 func NewContext() {
+	//TODO 添加默认wecenter路径
+	WeCenterUrl = "http://192.168.102.139/wecenter/"
+
 	workDir, err := WorkDir()
 	if err != nil {
 		log.Fatal(4, "Fail to get work directory: %v", err)
@@ -380,6 +384,7 @@ func NewContext() {
 	// This value is empty if site does not have sub-url.
 	AppSubUrl = strings.TrimSuffix(url.Path, "/")
 	AppSubUrlDepth = strings.Count(AppSubUrl, "/")
+
 
 	Protocol = HTTP
 	if sec.Key("PROTOCOL").String() == "https" {

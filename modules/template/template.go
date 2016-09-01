@@ -34,6 +34,9 @@ func NewFuncMap() []template.FuncMap {
 		"UseHTTPS": func() bool {
 			return strings.HasPrefix(setting.AppUrl, "https")
 		},
+		"WeCenterUrl" : func() string{
+			return setting.WeCenterUrl
+		},
 		"AppName": func() string {
 			return setting.AppName
 		},

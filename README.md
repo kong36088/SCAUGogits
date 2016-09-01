@@ -1,1 +1,1 @@
-华南农业大学定制版GOGS
+SCAU GOGS

@@ -317,7 +317,8 @@ func (u *User) NewGitSig() *git.Signature {
 // EncodePasswd encodes password to safe format.
 func (u *User) EncodePasswd() {
 	//newPasswd := base.PBKDF2([]byte(u.Passwd), []byte(u.Salt), 10000, 50, sha256.New)
-	newPasswd := base.MD5(u.Passwd+u.Salt)
+	newPasswd := base.MD5(base.MD5(u.Passwd)+u.Salt)
+	//log.Error(4, "newpass:%v", newPasswd)
 	u.Passwd = fmt.Sprintf("%v", newPasswd)
 }
 
