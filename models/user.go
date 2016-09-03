@@ -325,6 +325,9 @@ func (u *User) EncodePasswd() {
 // ValidatePassword checks if given password matches the one belongs to the user.
 func (u *User) ValidatePassword(passwd string) bool {
 	newUser := &User{Passwd: passwd, Salt: u.Salt}
+	if newUser.Passwd == u.Passwd {
+		return newUser.Passwd == u.Passwd
+	}
 	newUser.EncodePasswd()
 	//fmt.Printf("%v",newUser.Passwd)
 	//fmt.Printf("%v",u.Passwd)

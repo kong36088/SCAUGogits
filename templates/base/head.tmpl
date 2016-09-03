@@ -128,7 +128,7 @@
 												{{end}}
 
 												<div class="divider"></div>
-												<a class="item" href="{{AppSubUrl}}/user/logout">
+												<a class="item" href="{{WeCenterUrl}}/account/logout/">
 													<i class="octicon octicon-sign-out"></i>
 													{{.i18n.Tr "sign_out"}}<!-- Sign Out -->
 												</a>
@@ -143,7 +143,7 @@
 												<i class="octicon octicon-person"></i> {{.i18n.Tr "register"}}
 											</a>
 										{{end}}
-										<a class="item{{if .PageIsSignIn}} active{{end}}" href="{{WeCenterUrl}}?/account/login/git_redirect_to-{{AppUrl}}">
+										<a class="item{{if .PageIsSignIn}} active{{end}}" href="{{WeCenterUrl}}/account/login/git_redirect_to-{{AppUrl}}">
 											<i class="octicon octicon-sign-in"></i> {{.i18n.Tr "sign_in"}}
 										</a>
 									</div><!-- end anonymous right menu -->
