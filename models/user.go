@@ -255,7 +255,7 @@ func (u *User) RelAvatarLink() string {
 		if !com.IsExist(u.CustomAvatarPath()) {
 			return defaultImgUrl
 		}
-		return setting.AppSubUrl + "/avatars/" + com.ToStr(u.ID)
+		return setting.AppSubUrl + "/data/avatars/" + com.ToStr(u.ID)
 	case setting.DisableGravatar, setting.OfflineMode:
 		if !com.IsExist(u.CustomAvatarPath()) {
 			if err := u.GenerateRandomAvatar(); err != nil {
@@ -263,7 +263,7 @@ func (u *User) RelAvatarLink() string {
 			}
 		}
 
-		return setting.AppSubUrl + "/avatars/" + com.ToStr(u.ID)
+		return setting.AppSubUrl + "/data/avatars/" + com.ToStr(u.ID)
 	}
 	return base.AvatarLink(u.AvatarEmail)
 }
