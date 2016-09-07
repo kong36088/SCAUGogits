@@ -1,12 +1,12 @@
 <div class="four wide column">
 	<div class="ui vertical menu">
 		<div class="header item">{{.i18n.Tr "settings"}}</div>
-		<a class="{{if .PageIsSettingsProfile}}active{{end}} item" href="{{AppSubUrl}}/user/settings">
-			{{.i18n.Tr "settings.profile"}}
-		</a>
-		<a class="{{if .PageIsSettingsAvatar}}active{{end}} item" href="{{AppSubUrl}}/user/settings/avatar">
-			{{.i18n.Tr "settings.avatar"}}
-		</a>
+        <a class="item" href="{{WeCenterUrl}}/account/setting/profile/">
+            {{.i18n.Tr "settings.profile"}}
+        </a>
+        <!--<a class="{{if .PageIsSettingsAvatar}}active{{end}} item" href="{{AppSubUrl}}/user/settings/avatar">
+            {{.i18n.Tr "settings.avatar"}}
+        </a>-->
 		<a class="{{if .PageIsSettingsPassword}}active{{end}} item" href="{{WeCenterUrl}}/account/setting/security/">
 			{{.i18n.Tr "settings.password"}}
 		</a>

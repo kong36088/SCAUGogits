@@ -34,12 +34,18 @@ const (
 )
 
 func Settings(ctx *context.Context) {
+	ctx.Error(404)
+	return
+
 	ctx.Data["Title"] = ctx.Tr("settings")
 	ctx.Data["PageIsSettingsProfile"] = true
 	ctx.HTML(200, SETTINGS_PROFILE)
 }
 
 func handleUsernameChange(ctx *context.Context, newName string) {
+	ctx.Error(404)
+	return
+
 	// Non-local users are not allowed to change their username.
 	if len(newName) == 0 || !ctx.User.IsLocal() {
 		return
@@ -75,6 +81,9 @@ func handleUsernameChange(ctx *context.Context, newName string) {
 }
 
 func SettingsPost(ctx *context.Context, form auth.UpdateProfileForm) {
+	ctx.Error(404)
+	return
+
 	ctx.Data["Title"] = ctx.Tr("settings")
 	ctx.Data["PageIsSettingsProfile"] = true
 
@@ -102,8 +111,39 @@ func SettingsPost(ctx *context.Context, form auth.UpdateProfileForm) {
 	ctx.Redirect(setting.AppSubUrl + "/user/settings")
 }
 
+//修改自定义名称
+func SettingsFullNamePost(ctx *context.Context, form auth.UpdateFullNameForm) {
+	ctx.Error(404)
+	return
+
+	ctx.Data["Title"] = ctx.Tr("settings")
+	ctx.Data["PageIsSettingsProfile"] = true
+
+	if ctx.HasError() {
+		ctx.HTML(200, SETTINGS_PROFILE)
+		return
+	}
+
+	if ctx.Written() {
+		return
+	}
+
+	ctx.User.FullName = form.FullName
+	if err := models.UpdateUser(ctx.User); err != nil {
+		ctx.Handle(500, "UpdateUser", err)
+		return
+	}
+
+	log.Trace("User settings updated: %s", ctx.User.Name)
+	ctx.Flash.Success(ctx.Tr("settings.update_profile_success"))
+	ctx.Redirect(setting.AppSubUrl + "/user/settings")
+}
+
 // FIXME: limit size.
 func UpdateAvatarSetting(ctx *context.Context, form auth.AvatarForm, ctxUser *models.User) error {
+	ctx.Error(404)
+	return
+
 	ctxUser.UseCustomAvatar = form.Source == auth.AVATAR_LOCAL
 	if len(form.Gravatar) > 0 {
 		ctxUser.Avatar = base.EncodeMD5(form.Gravatar)
@@ -145,12 +185,18 @@ func UpdateAvatarSetting(ctx *context.Context, form auth.AvatarForm, ctxUser *mo
 }
 
 func SettingsAvatar(ctx *context.Context) {
+	ctx.Error(404)
+	return
+
 	ctx.Data["Title"] = ctx.Tr("settings")
 	ctx.Data["PageIsSettingsAvatar"] = true
 	ctx.HTML(200, SETTINGS_AVATAR)
 }
 
 func SettingsAvatarPost(ctx *context.Context, form auth.AvatarForm) {
+	ctx.Error(404)
+	return
+
 	if err := UpdateAvatarSetting(ctx, form, ctx.User); err != nil {
 		ctx.Flash.Error(err.Error())
 	} else {
@@ -161,6 +207,9 @@ func SettingsAvatarPost(ctx *context.Context, form auth.AvatarForm) {
 }
 
 func SettingsDeleteAvatar(ctx *context.Context) {
+	ctx.Error(404)
+	return
+
 	if err := ctx.User.DeleteAvatar(); err != nil {
 		ctx.Flash.Error(err.Error())
 	}

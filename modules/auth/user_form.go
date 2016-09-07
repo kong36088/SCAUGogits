@@ -101,6 +101,14 @@ func (f *UpdateProfileForm) Validate(ctx *macaron.Context, errs binding.Errors) 
 	return validate(errs, ctx.Data, f, ctx.Locale)
 }
 
+type UpdateFullNameForm struct {
+	FullName string `binding:"MaxSize(100)"`
+}
+
+func (f *UpdateFullNameForm) Validate(ctx *macaron.Context, errs binding.Errors) binding.Errors {
+	return validate(errs, ctx.Data, f, ctx.Locale)
+}
+
 const (
 	AVATAR_LOCAL  string = "local"
 	AVATAR_BYMAIL string = "bymail"
