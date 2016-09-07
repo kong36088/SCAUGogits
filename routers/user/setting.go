@@ -111,38 +111,10 @@ func SettingsPost(ctx *context.Context, form auth.UpdateProfileForm) {
 	ctx.Redirect(setting.AppSubUrl + "/user/settings")
 }
 
-//修改自定义名称
-func SettingsFullNamePost(ctx *context.Context, form auth.UpdateFullNameForm) {
-	ctx.Error(404)
-	return
-
-	ctx.Data["Title"] = ctx.Tr("settings")
-	ctx.Data["PageIsSettingsProfile"] = true
-
-	if ctx.HasError() {
-		ctx.HTML(200, SETTINGS_PROFILE)
-		return
-	}
-
-	if ctx.Written() {
-		return
-	}
-
-	ctx.User.FullName = form.FullName
-	if err := models.UpdateUser(ctx.User); err != nil {
-		ctx.Handle(500, "UpdateUser", err)
-		return
-	}
-
-	log.Trace("User settings updated: %s", ctx.User.Name)
-	ctx.Flash.Success(ctx.Tr("settings.update_profile_success"))
-	ctx.Redirect(setting.AppSubUrl + "/user/settings")
-}
-
 // FIXME: limit size.
 func UpdateAvatarSetting(ctx *context.Context, form auth.AvatarForm, ctxUser *models.User) error {
 	ctx.Error(404)
-	return
+	return nil
 
 	ctxUser.UseCustomAvatar = form.Source == auth.AVATAR_LOCAL
 	if len(form.Gravatar) > 0 {
