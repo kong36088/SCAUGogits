@@ -329,7 +329,7 @@ func IsRunUserMatchCurrentUser(runUser string) (string, bool) {
 // NOTE: do not print any log except error.
 func NewContext() {
 	//TODO 添加默认wecenter路径
-	WeCenterUrl = "http://192.168.102.139"
+	WeCenterUrl = "http://wecenter.jwlchina.cn"
 
 	workDir, err := WorkDir()
 	if err != nil {
