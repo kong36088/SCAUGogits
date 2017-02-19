@@ -1,1 +1,7 @@
-SCAU GOGS
+# SCAU GOGITS
+
+SCAU GOGS项目，整合wecenter+gogs联合成为版本管理系统
+
+校园网访问地址：http://172.26.16.145/git
+
+在线demo：http://wecenter.jwlchina.cn/git
